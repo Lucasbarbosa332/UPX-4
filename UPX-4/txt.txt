@@ -1,0 +1,10 @@
+/Escopo/projeto
+  ├── css
+  │   └── style.css
+  ├── html
+  │   └── home.html
+  ├── img
+  │   └── Eco_Point-removebg-preview.png
+  ├── js
+  │   └── seu-script.js (se houver)
+  └── index.html
