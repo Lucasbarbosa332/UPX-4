@@ -1,0 +1,151 @@
+/* Estilos globais  mais cuidado esse css ta todo cagado dependendo do que for adicionar pode cagar nas funções js 
+ detalhe não esta responsivo, entao no celular ta um coco, a header de login precisa de melhoras  se voce poder deixar resposnivo sera legal alemd disso vou adicionar a 
+ API de login para validação. acho a unica coisa ue falta a explicar como os pontos são resgatados eu coloquei que os pomtos so podem ser resgatados apos as denuncias serma aprovadas 
+ entaio eles ficam a mensagem em analise. de todos os arquivos nos so usaraemos os arquivos t3ste.css/ test3.js / teste.html o resto so foi escopo para chefar nesse resultado voc~e pode escolhar fazer alguma coisa do materiala ali 
+ deixa eu salvar essa merda anqtes que percamos tudo que eu fiz aqui e cuidado o js do mapa qualquer alteraçõa na hora de fazer deploy ele perede a funcionalidade essa API Google e uma merda 
+ de resto acho que ta bom
+ */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+/* Esconder elementos */
+.hidden {
+    display: none;
+}
+
+/* Header */
+header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* sombra para dar mais destaque */
+    z-index: 10;
+}
+
+/* Formulário de Denúncia */
+#denunciaForm {
+    width: 90%;
+    max-width: 650px; /*  largura*/
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px; /* Borda mais suave */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Sombra mais forte */
+    margin: 30px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#denunciaForm:hover {
+    transform: translateY(-5px); /* Efeito de levitar quando o mouse passa por cima */
+}
+
+#denunciaForm input, #denunciaForm textarea, #denunciaForm button {
+    width: 100%;
+    padding: 12px; /* Mais espaço interno */
+    margin: 10px 0;
+    border-radius: 8px; /* Borda mais arredondada */
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#denunciaForm input:focus, #denunciaForm textarea:focus {
+    border-color: #4a90e2; /* Borda azul ao focar nos campos */
+    outline: none;
+}
+
+#denunciaForm button {
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    padding: 14px;
+}
+
+#denunciaForm button:hover {
+    background-color: #007acc;
+    transform: translateY(-2px); /* Efeito de elevação no hover */
+}
+
+/* Botões principais */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Mais espaço entre os botões */
+    margin-top: 30px;
+}
+
+.buttons-container button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 12px 30px; /* Botões maiores e mais confortáveis */
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.buttons-container button:hover {
+    background-color: #007acc;
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+.buttons-container button:active {
+    transform: translateY(2px); /* Efeito de pressionar o botão */
+}
+
+/* Seção de Denúncias */
+#denuncias {
+    width: 90%;
+    max-width: 650px;
+    margin-top: 40px;
+}
+
+/* Card de Denúncia */
+.card-denuncia {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-denuncia:hover {
+    transform: translateY(-5px); /* Efeito de levitação nos cards */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+}
+
+.card-denuncia p {
+    font-size: 16px; /*  fonte para melhorar a legibilidade */
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Melhorias de acessibilidade */
+a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #007acc;
+}
+

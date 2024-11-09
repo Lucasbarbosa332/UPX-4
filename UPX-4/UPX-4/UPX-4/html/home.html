@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bem-vindo</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+   <link rel="stylesheet" href="">
+   <link rel="stylesheet" href="">
+
+</head>
+<body>
+
+    <!---*
+    Menu 
+    *--->
+    
+   
+    <!---*
+    Menu 
+    *--->
+ 
+  <!---*
+     Aqui Fica o nome do usuario 
+   *--->
+  <header>
+    <h1>Bem-vindo, <span id="user-name"></span>!</h1>
+  </header>
+
+  <script>
+    // Captura o nome de usuário da URL
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('username');
+
+    // Exibe o nome de usuário no cabeçalho
+    document.getElementById('user-name').textContent = username;
+  </script>
+  <!---*
+     Aqui Fica o nome do usuario 
+   *--->
+
+  <!---*
+     Aqui o titulo 
+   *--->
+  <header>
+    <h1>Mapa de Acessibilidade Urbana</h1>
+    <p>Ajude a mapear as áreas críticas de acessibilidade!</p>
+    <img src="" alt="Imagem de fundo">
+</header>
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('username');
+    document.getElementById('user-name').textContent = username;
+  </script>
+<div class="floating-button" id="points-button">
+    Pontos: <span id="points-display">0</span>
+  </div>
+
+<div class="buttons">
+  <button id="minhas-denuncias">Minhas Denúncias</button>
+  <button id="comunidade">Comunidade</button>
+  <button id="projetos">Projetos</button>
+</div>
+
+
+<style>
+    /* Estilo do botão flutuante */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+.floating-button:active {
+    background-color: #1e7e34;
+}
+
+#points-display {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.buttons button:hover {
+  background-color: #0056b3;
+}
+</style>
+
+<!---*
+     Aqui o titulo 
+*--->
+
+<!---*
+   Map
+*--->
+   <main>
+    <div id="map">
+
+      <iframe
+
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15010.74828429813!2d-43.9722806!3d-19.853189399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1727653496130!5m2!1spt-BR!2sbr" 
+      width="100%" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+    </div>
+
+
+
+    <script>
+      /* Aqui esta o codigo de marcação no Mapa mais não esta funcionando 
+        
+      
+      let map;
+        let marker;
+
+        function initMap() {
+            const initialLocation = { lat: -19.8531894, lng: -43.9722806 }; // Localização inicial
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: initialLocation,
+            });
+
+            marker = new google.maps.Marker({
+                position: initialLocation,
+                map: map,
+                title: "Clique para adicionar uma nova localização",
+            });
+
+            // Adiciona evento de clique no mapa
+            map.addListener("click", function(event) {
+                placeMarker(event.latLng);
+            });
+        }
+
+        function placeMarker(location) {
+            marker.setPosition(location);
+            map.setCenter(location); // Centraliza o mapa na nova localização
+        }
+    </script>
+    
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+      
+      /* Aqui etsa a API Do Maps mas tambem não esta funcioando por agum motivo 
+    </script>
+
+
+
+<!---*
+   Map
+*--->
+
+
+<!---*
+     Aqui fica as funcionalidades do formulario 
+   *--->
+    <form id="report-form">
+        <h2>Reportar Problema de Acessibilidade</h2>
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" required>
+        <button type="button" id="get-location">Usar Localização Atual</button>
+        <button type="button" id="fetch-address">Buscar Endereço</button>
+
+        <label for="street">Rua:</label>
+        <input type="text" id="street" required>
+        
+        <label for="neighborhood">Bairro:</label>
+        <input type="text" id="neighborhood" required>
+        
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" required>
+        
+        <label for="state">Estado:</label>
+        <input type="text" id="state" required>
+        
+        <label for="country">País:</label>
+        <input type="text" id="country" value="Brasil" readonly>
+
+        <label for="description">Descrição:</label>
+        <textarea id="description" required></textarea>
+        
+        <label for="image">Adicionar Imagem:</label>
+        <input type="file" id="image" accept="image/*">
+        <img id="image-preview" class="image-preview" alt="Pré-visualização da imagem">
+
+        <label for="name">Nome:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
+
+        <label for="phone">Telefone:</label>
+        <input type="text" id="phone" required>
+
+       
+        <button type="submit">Enviar Relatório</button> <!-- Aqui tera um retorno por Gmail assim que o usuario enviar uma denuncia  sera Usada Alguma API Ja tenho a chave so flata implementar a Lógica-->
+        <div id="error-message" class="error"></div>
+    </form>
+    <div id="message"></div>
+    <h3>Relatórios Enviados:</h3>
+    <ul id="report-list"></ul>
+</main>
+
+<style>
+    header {
+        background: #007BFF;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    header img {
+        width: 100%;
+        margin-top: -20px;
+        opacity: 0.5;
+        display: block;
+    }
+</style>
+
+<script>
+    document.getElementById('points-button').addEventListener('click', function() {
+        if (pontos >= 10) {
+            alert('Você trocou seus pontos!');
+            pontos -= 10; // Subtrai 10 pontos ao trocar
+        } else {
+            alert('Você precisa de no mínimo 10 pontos para trocar.');
+        }
+    
+        // Atualiza a exibição de pontos
+        document.getElementById('points-display').textContent = pontos;
+    });
+    
+   // Selecionar os elementos
+const form = document.getElementById('report-form');
+const reportList = document.getElementById('report-list');
+const messageDiv = document.getElementById('message');
+const errorMessage = document.getElementById('error-message');
+let pontos = 0; // Pontuação inicial
+let reports = []; // Array para armazenar os relatórios
+
+// Função para adicionar pontos
+function adicionarPontos() {
+    pontos += 10; // Cada envio dá 10 pontos
+    messageDiv.textContent = `Você ganhou 10 pontos! Pontos totais: ${pontos}`;
+}
+
+// Função para adicionar o relatório na lista
+function adicionarRelatorioNaLista(report) {
+    const listItem = document.createElement('li');
+    listItem.textContent = `Nome: ${report.name}, E-mail: ${report.email}, Telefone: ${report.phone}, CEP: ${report.cep}, Rua: ${report.street}, Bairro: ${report.neighborhood}, Cidade: ${report.city}, Estado: ${report.state}, Descrição: ${report.description} (Imagem: ${report.image})`;
+    reportList.appendChild(listItem);
+}
+
+// Função para exibir a pré-visualização da imagem
+document.getElementById('image').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const imagePreview = document.getElementById('image-preview');
+            imagePreview.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Função para obter a localização atual
+document.getElementById('get-location').addEventListener('click', function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            // Usar a API de geocodificação para converter latitude e longitude em endereço
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        document.getElementById('street').value = data.address.road || '';
+                        document.getElementById('neighborhood').value = data.address.neighborhood || '';
+                        document.getElementById('city').value = data.address.city || '';
+                        document.getElementById('state').value = data.address.state || '';
+                        document.getElementById('cep').value = data.address.postcode || '';
+                    } else {
+                        alert('Endereço não encontrado.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao buscar a localização.');
+                });
+        }, function(error) {
+            alert('Erro ao obter localização: ' + error.message);
+        });
+    } else {
+        alert('Geolocalização não é suportada neste navegador.');
+    }
+});
+
+// Função para buscar endereço com base no CEP
+document.getElementById('fetch-address').addEventListener('click', function() {
+    const cep = document.getElementById('cep').value.replace(/\D/g, '');
+    if (cep.length === 8) {
+        fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    document.getElementById('street').value = data.street;
+                    document.getElementById('neighborhood').value = data.neighborhood;
+                    document.getElementById('city').value = data.city;
+                    document.getElementById('state').value = data.state;
+                } else {
+                    alert('CEP não encontrado.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao buscar o endereço.');
+            });
+    } else {
+        alert('Por favor, insira um CEP válido.');
+    }
+});
+
+// Evento de envio do formulário
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Previne o comportamento padrão de envio do formulário
+
+    // Validação simples (você pode melhorar isso)
+    const cep = document.getElementById('cep').value;
+    const description = document.getElementById('description').value;
+
+    if (cep === '' || description === '') {
+        errorMessage.textContent = 'Por favor, preencha todos os campos obrigatórios!';
+        return;
+    }
+
+    // Coletar os dados do formulário
+    const report = {
+        cep: document.getElementById('cep').value,
+        street: document.getElementById('street').value,
+        neighborhood: document.getElementById('neighborhood').value,
+        city: document.getElementById('city').value,
+        state: document.getElementById('state').value,
+        country: document.getElementById('country').value,
+        description: document.getElementById('description').value,
+        image: document.getElementById('image').files[0] ? document.getElementById('image').files[0].name : 'Nenhuma imagem enviada',
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+    };
+
+    // Adicionar o relatório ao array
+    reports.push(report);
+
+    // Adicionar o relatório à lista
+    adicionarRelatorioNaLista(report);
+
+    // Adicionar pontos
+    adicionarPontos();
+
+    // Limpar o formulário
+    form.reset();
+    document.getElementById('image-preview').src = ''; // Limpar a pré-visualização
+    errorMessage.textContent = '';
+    messageDiv.textContent = 'Relatório enviado com sucesso!';
+});
+
+</script>
+
+  
+
+<!---*
+     Aqui fica o css do formulario 
+   *--->
+<style>
+    
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 40px 0; /* Aumentei o padding */
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative; /* Para posicionar a imagem abaixo */
+}
+
+header img {
+  width: 100%; /* Para a imagem ocupar toda a largura */
+  position: 4;
+  bottom: 4; /* Para ficar no fundo */
+  left: 0;
+  opacity: 0.5; /* Ajuste a opacidade se necessário */
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+    background-color: #eaeaea;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+#report-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#report-list li {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+#map {
+  height: 400px; /* Altura do mapa */
+  width: 100%; /* Largura do mapa */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.image-preview {
+  max-width: 200px;
+  margin-top: 10px;
+}
+</style>
+
+<!---*
+     Aqui acaba o css 
+   *--->
+<footer>
+
+    <p>&copy; 2024 Mapeamento de Acessibilidade</p>
+</footer>
+<script src="/js/js.js"></script>
+</body>
+</html>

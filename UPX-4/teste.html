@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncia de Acessibilidade</title>
+    <link rel="stylesheet" href="/t3ste.css">
+    <title>Denúncia de Problema</title>
+    <!-- Adicionar o CSS do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Adicionar o script do Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+<header>
+    <button id="loginButton">Logar</button>
+    <div id="loginForm" class="hidden">
+        <h3>Login</h3>
+        <input type="text" id="userName" placeholder="Nome">
+        <input type="email" id="userEmail" placeholder="Gmail">
+        <button onclick="loginUser()">Login</button>
+    </div>
+    <span id="userGreeting" class="hidden"></span>
+</header>
+
+<main>
+    <div class="buttons-container">
+        <button onclick="showSection('denuncias')">Minhas Denúncias</button>
+        <button onclick="showSection('pontos')">Meus Pontos</button>
+        <button onclick="showSection('denunciaForm')">Denunciar</button>
+    </div>
+
+    <section id="denuncias" class="hidden">
+        <h2>Denúncias</h2>
+        <div id="denunciasList"></div>
+        <button onclick="showSection('denunciaForm')">Voltar ao Formulário de Denúncia</button>
+    </section>
+
+    <div id="map" class="map-container" style="height: 400px;"></div> <!-- Mapa -->
+
+    <section id="denunciaForm">
+        <h2>Formulário de Denúncia</h2>
+        <form onsubmit="submitDenuncia(event)">
+            <input type="text" id="cep" placeholder="CEP" required>
+            <input type="text" id="bairro" placeholder="Bairro" required>
+            <input type="text" id="cidade" placeholder="Cidade" required>
+            <input type="text" id="estado" placeholder="Estado" required>
+            <input type="text" id="pais" placeholder="País" required>
+            <textarea id="descricao" placeholder="Descrição" required></textarea>
+            <input type="file" id="imagem" accept="image/*">
+            <button type="submit">Denunciar</button>
+        </form>
+    </section>
+
+    <section id="pontos" class="hidden">
+        <h2>Meus Pontos</h2>
+        <p>Pontos acumulados: <span id="pontosTotais">0</span></p>
+        <button id="resgatarPontos" disabled>Resgatar Pontos</button>
+    </section>
+</main>
+
+<!-- Script para inicializar o mapa  eu tirei e coloquei no js -->
+<script>
+  
+</script>
+
+
+
+    <script src="/test3.js"></script>
+</body>
+</html>
